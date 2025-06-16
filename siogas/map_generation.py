@@ -21,7 +21,7 @@ files=[]
 
 import os
 import pathlib
-
+os.chdir(os.getcwd())
 
 for i in range(0,len(coordenadas),1):
 

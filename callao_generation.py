@@ -15,6 +15,9 @@ ds_sound_profile= 1449 + 4.67*ds_thetao["thetao"] - 0.055*(ds_thetao["thetao"]**
 
 del ds_thetao, ds_so
 
+import os
+os.chdir(os.getcwd())
+
 # Importando batimetria
 bati=xr.open_dataset("/home/user03/siogas/data/Bati_peru_1km_SRTM30.nc")
 

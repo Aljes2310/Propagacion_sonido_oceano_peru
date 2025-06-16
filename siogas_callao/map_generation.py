@@ -13,6 +13,8 @@ import folium
 import os
 import re
 from pathlib import Path
+import os
+os.chdir(os.getcwd())
 
 # Configuración
 img_folder = Path("img/")  # Usamos Path para mejor manejo de rutas
