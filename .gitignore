@@ -1,0 +1,15 @@
+
+.env
+
+# ignorar html
+*.html
+
+# Ignora todas las carpetas llamadas 'img' en cualquier nivel del proyecto
+img/
+
+myvenv/
+
+
+*.log
+
+*.nc

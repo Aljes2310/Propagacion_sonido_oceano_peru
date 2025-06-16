@@ -1,0 +1,34 @@
+Rutear Bellhop
+
+cd /home/aljes/Desktop/bellhop/Acoustics-Toolbox-main/Bellhop       /home/user03/siogas/Acoustics-Toolbox-main/Bellhop
+ln -s bellhop.exe bellhop
+chmod +x bellhop bellhop.exe
+
+
+✅ Edita tu archivo ~/.bashrc:
+
+nano ~/.bashrc
+
+Y al final, añade:
+
+alias bellhop='/home/user03/siogas/Acoustics-Toolbox-main/Bellhop/bellhop.exe'
+
+export PATH="$PATH:/home/user03/siogas/Acoustics-Toolbox-main/Bellhop"
+
+
+Guarda (Ctrl + O, Enter) y cierra (Ctrl + X).
+
+✅ Luego recarga la configuración con:
+
+source ~/.bashrc
+
+
+#lanzar jupyter notebook
+jupyter notebook
+
+
+ver ejemplos
+https://arlpy.readthedocs.io/en/latest/_static/bellhop.html
+
+
+/home/aljes/Desktop/bellhop

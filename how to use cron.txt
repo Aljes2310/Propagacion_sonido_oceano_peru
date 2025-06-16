@@ -1,0 +1,25 @@
+sudo apt update
+
+# habilitar cron
+sudo systemctl enable cron
+
+# Crear tu .sh
+/home/user03/siogas/myvenv/bin/python /home/user03/siogas/download_data.py
+/home/user03/siogas/myvenv/bin/python /home/user03/siogas/download_data.py
+
+
+# Configura tu tarea: crontab -e
+16 10 * * * /bin/bash /home/user03/siogas/run_diario.sh > /home/user03/cron.log 2>&1
+
+# Hacer ejecutable el script
+chmod +x /home/user03/siogas/run_diario.sh
+
+# También verifica los permisos del directorio
+chmod 755 /home/user03/siogas/
+
+# Ver si compila el script:
+cat /home/user03/cron.log
+
+
+
+/bin/bash /home/user03/siogas/run_diario.sh
