@@ -5,10 +5,13 @@ import math
 import arlpy.uwapm as pm
 import numpy as np
 
-print(pm.models())
+import os
+# Obtener la ruta del directorio actual del script
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
-ds_thetao=xr.open_dataset("/home/user03/siogas/data/thetao_p.nc")
-ds_so=xr.open_dataset("/home/user03/siogas/data/so_p.nc")
+print(pm.models())
+ds_thetao=xr.open_dataset(f"{current_dir}/data/thetao_p.nc")
+ds_so=xr.open_dataset(f"{current_dir}/data/so_p.nc")
 
 # Calculando velocidad del sonido
 ds_sound_profile= 1449 + 4.67*ds_thetao["thetao"] - 0.055*(ds_thetao["thetao"]**2)+0.0003*(ds_thetao["thetao"]**3) + (1.39-0.012*ds_thetao["thetao"])*(ds_so["so"]-35) +0.017*ds_so["depth"]
@@ -16,9 +19,9 @@ ds_sound_profile= 1449 + 4.67*ds_thetao["thetao"] - 0.055*(ds_thetao["thetao"]**
 del ds_thetao, ds_so
 
 # Importando batimetria
-bati=xr.open_dataset("/home/user03/siogas/data/Bati_peru_1km_SRTM30.nc")
+bati=xr.open_dataset(f"{current_dir}/data/Bati_peru_1km_SRTM30.nc")
 #Importando coordenadas de puntos de grilla
-puntos_grilla=pd.read_csv("/home/user03/siogas/data/Puntos_grilla.csv")
+puntos_grilla=pd.read_csv(f"{current_dir}/data/Puntos_grilla.csv")
 
 # Interpolado profundidades
 import numpy as np
@@ -141,7 +144,7 @@ for i in range(0,len(puntos_grilla),1):
 
 
         # Guardar la figura (descomentar cuando sea necesario)
-        plt.savefig(f"/home/user03/siogas/siogas/img/join/tloss_{perfil['latitude'].unique().item()}_{perfil['longitude'].unique().item()}.webp", bbox_inches="tight")
+        plt.savefig(f"{current_dir}/siogas/img/join/tloss_{perfil['latitude'].unique().item()}_{perfil['longitude'].unique().item()}.webp", bbox_inches="tight")
         plt.close("all")
         print(f"Imagen creada_{str(perfil['latitude'].unique().item())}_{str(perfil['longitude'].unique().item())}")
     

@@ -16,7 +16,8 @@ ds_sound_profile= 1449 + 4.67*ds_thetao["thetao"] - 0.055*(ds_thetao["thetao"]**
 del ds_thetao, ds_so
 
 import os
-os.chdir(os.getcwd())
+# Obtener la ruta del directorio actual del script
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Importando batimetria
 bati=xr.open_dataset("/home/user03/siogas/data/Bati_peru_1km_SRTM30.nc")
@@ -150,7 +151,7 @@ for i in range(0,len(puntos_grilla),1):
 
 
         # Guardar la figura (descomentar cuando sea necesario)
-        plt.savefig(f"./siogas_callao/img/tloss_{perfil['latitude'].unique().item()}_{perfil['longitude'].unique().item()}.webp", bbox_inches="tight")
+        plt.savefig(f"{current_dir}/siogas_callao/img/tloss_{perfil['latitude'].unique().item()}_{perfil['longitude'].unique().item()}.webp", bbox_inches="tight")
         plt.close("all")
         print(f"Imagen creada_{str(perfil['latitude'].unique().item())}_{str(perfil['longitude'].unique().item())}")
     

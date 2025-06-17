@@ -19,9 +19,6 @@ transmision_loss = folium.FeatureGroup(name="Propagacion", show=True).add_to(m)
 
 files=[]
 
-import os
-import pathlib
-os.chdir(os.getcwd())
 
 for i in range(0,len(coordenadas),1):
 
