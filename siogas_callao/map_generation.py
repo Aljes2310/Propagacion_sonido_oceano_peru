@@ -13,8 +13,11 @@ import folium
 import os
 import re
 from pathlib import Path
+
 import os
-os.chdir(os.getcwd())
+# Obtener la ruta del directorio actual del script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(current_dir)
 
 # Configuración
 img_folder = Path("img/")  # Usamos Path para mejor manejo de rutas

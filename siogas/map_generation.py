@@ -20,6 +20,12 @@ transmision_loss = folium.FeatureGroup(name="Propagacion", show=True).add_to(m)
 files=[]
 
 
+import os
+# Obtener la ruta del directorio actual del script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(current_dir)
+
+
 for i in range(0,len(coordenadas),1):
 
 
