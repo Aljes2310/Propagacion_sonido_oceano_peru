@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 import math
 import arlpy.uwapm as pm
 import numpy as np
+import cartopy.crs as ccrs
+import geopandas as gpd
+from shapely.geometry import Polygon
+import cartopy.feature as cf
 
 ds_thetao=xr.open_dataset("./data/thetao_p.nc").sel(latitude=slice(-13, -11))
 ds_so=xr.open_dataset("./data/so_p.nc").sel(latitude=slice(-13, -11))
@@ -13,7 +17,40 @@ puntos_grilla=ds_thetao.isel(time=0, depth=4).to_dataframe().reset_index().dropn
 # Calculando velocidad del sonido
 ds_sound_profile= 1449 + 4.67*ds_thetao["thetao"] - 0.055*(ds_thetao["thetao"]**2)+0.0003*(ds_thetao["thetao"]**3) + (1.39-0.012*ds_thetao["thetao"])*(ds_so["so"]-35) +0.017*ds_so["depth"]
 
+
+# Definir los límites
+lon_min, lon_max = -83, -69
+lat_min, lat_max = -60, 7
+region = Polygon([(lon_min, lat_min), (lon_min, lat_max), (lon_max, lat_max), (lon_max, lat_min)])
+# Crear el CRS
+crs = ccrs.PlateCarree()
+# Agregar la línea de costa
+coastline = cf.COASTLINE.with_scale('50m')
+# Extraer la línea de costa que intersecta con la región
+coastlines = []
+for geom in coastline.geometries():
+    if geom.intersects(region):
+        coastlines.append(geom.intersection(region))
+# Crear un GeoDataFrame con la línea de costa
+gdf_coast = gpd.GeoDataFrame(geometry=coastlines, crs=crs)
+# Calcular la isoparalitoral a 60 mn
+buffer_distance = 1  # en grados
+gdf_isoparalitoral = gdf_coast.copy()
+try:
+    import salem
+except:
+    print("pass")
+
+gdf_isoparalitoral['geometry'] = gdf_isoparalitoral.geometry.buffer(buffer_distance)
+# Crear un polígono de la isoparalitoral
+isoparalitoral_polygon = gdf_isoparalitoral.unary_union
+# Crear un GeoDataFrame con el polígono de la isoparalitoral
+gdf_isoparalitoral_polygon = gpd.GeoDataFrame(geometry=[isoparalitoral_polygon], crs=crs)
+
+#cogiendo datos de la franja de 60mn
+ds_sound_profile = ds_sound_profile.salem.roi(shape=gdf_isoparalitoral_polygon)
 del ds_thetao, ds_so
+
 
 import os
 # Obtener la ruta del directorio actual del script
