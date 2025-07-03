@@ -64,4 +64,4 @@ for i in range(0,len(coordenadas),1):
 
 
 folium.LayerControl().add_to(m)
-m.save("mymap.html")
+m.save(f"{current_dir}/mymap.html")

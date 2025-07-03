@@ -67,5 +67,5 @@ print(f"• Markers creados: {markers_creados}")
 print(f"• Procesamiento completado")
 
 # Guardar mapa
-m.save("mapa_automatico.html")
+m.save(f"{current_dir}/mapa_automatico.html")
 print("Mapa guardado como 'mapa_automatico.html'")

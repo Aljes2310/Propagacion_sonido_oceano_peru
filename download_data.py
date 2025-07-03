@@ -15,14 +15,18 @@ today=datetime.today().strftime("%Y-%m-%d")
 future=(datetime.today() + timedelta(10)).strftime("%Y-%m-%d")
 
 import os
+# Obtener la ruta del directorio actual del script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(current_dir)
+
 
 try:
-    os.remove("./data/so_p.nc")
+    os.remove(f"{current_dir}/data/so_p.nc")
 except:
     print("No habia data previa de salinidad")
 
 try:
-    os.remove("./data/thetao_p.nc")
+    os.remove(f"{current_dir}/data/thetao_p.nc")
 except:
     print("No habia data de Temperatura")
 
@@ -39,7 +43,7 @@ copernicusmarine.subset(dataset_id = id_dataset,
                         maximum_latitude = lat_max,
                         #output_filename = f"thetao_p_{(datetime.today()).strftime("%Y%m%d")}.nc",
                         output_filename = f"thetao_p.nc",
-                        output_directory = "./data")
+                        output_directory = f"{current_dir}/data")
 
 
 salinity_id="cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m"
@@ -54,4 +58,4 @@ copernicusmarine.subset(dataset_id = salinity_id,
                         maximum_depth=5000,
                         maximum_latitude = lat_max,
                         output_filename = f"so_p.nc",
-                        output_directory = "./data")
+                        output_directory = f"{current_dir}/data")
