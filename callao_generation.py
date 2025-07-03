@@ -17,7 +17,7 @@ puntos_grilla=ds_thetao.isel(time=0, depth=4).to_dataframe().reset_index().dropn
 # Calculando velocidad del sonido
 ds_sound_profile= 1449 + 4.67*ds_thetao["thetao"] - 0.055*(ds_thetao["thetao"]**2)+0.0003*(ds_thetao["thetao"]**3) + (1.39-0.012*ds_thetao["thetao"])*(ds_so["so"]-35) +0.017*ds_so["depth"]
 
-
+""" 
 # Definir los límites
 lon_min, lon_max = -83, -69
 lat_min, lat_max = -60, 7
@@ -51,7 +51,7 @@ gdf_isoparalitoral_polygon = gpd.GeoDataFrame(geometry=[isoparalitoral_polygon],
 ds_sound_profile = ds_sound_profile.salem.roi(shape=gdf_isoparalitoral_polygon)
 del ds_thetao, ds_so
 
-
+ """
 import os
 # Obtener la ruta del directorio actual del script
 current_dir = os.path.dirname(os.path.abspath(__file__))
