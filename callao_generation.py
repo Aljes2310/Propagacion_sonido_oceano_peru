@@ -17,7 +17,7 @@ puntos_grilla=ds_thetao.isel(time=0, depth=4).to_dataframe().reset_index().dropn
 # Calculando velocidad del sonido
 ds_sound_profile= 1449 + 4.67*ds_thetao["thetao"] - 0.055*(ds_thetao["thetao"]**2)+0.0003*(ds_thetao["thetao"]**3) + (1.39-0.012*ds_thetao["thetao"])*(ds_so["so"]-35) +0.017*ds_so["depth"]
 
-""" 
+
 # Definir los límites
 lon_min, lon_max = -83, -69
 lat_min, lat_max = -60, 7
@@ -51,7 +51,7 @@ gdf_isoparalitoral_polygon = gpd.GeoDataFrame(geometry=[isoparalitoral_polygon],
 ds_sound_profile = ds_sound_profile.salem.roi(shape=gdf_isoparalitoral_polygon)
 del ds_thetao, ds_so
 
- """
+
 import os
 # Obtener la ruta del directorio actual del script
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -59,12 +59,11 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 # Importando batimetria
 bati=xr.open_dataset("/home/user03/siogas/data/Bati_peru_1km_SRTM30.nc")
 
-"""
+
 #Importando coordenadas de puntos de grilla
 puntos_grilla=pd.read_csv("./data/Puntos_grilla_callao.csv")
 puntos_grilla['latitude'] = puntos_grilla['latitude'].astype(float)
 puntos_grilla['longitude'] = puntos_grilla['longitude'].astype(float)
-"""
 
 
 # Interpolado profundidades
