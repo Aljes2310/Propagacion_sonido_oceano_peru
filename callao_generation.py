@@ -61,7 +61,7 @@ bati=xr.open_dataset("/home/user03/siogas/data/Bati_peru_1km_SRTM30.nc")
 
 
 #Importando coordenadas de puntos de grilla
-puntos_grilla=pd.read_csv("./data/Puntos_grilla_callao.csv")
+puntos_grilla=pd.read_csv(f"{current_dir}/data/Puntos_grilla_callao.csv")
 puntos_grilla['latitude'] = puntos_grilla['latitude'].astype(float)
 puntos_grilla['longitude'] = puntos_grilla['longitude'].astype(float)
 

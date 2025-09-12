@@ -144,7 +144,7 @@ for i in range(0,len(puntos_grilla),1):
 
 
         # Guardar la figura (descomentar cuando sea necesario)
-        plt.savefig(f"{current_dir}/siogas/img/join/tloss_{perfil['latitude'].unique().item()}_{perfil['longitude'].unique().item()}.webp", bbox_inches="tight")
+        plt.savefig(f"{current_dir}/siogas/img/join/tloss_{perfil['latitude'].unique().item()}_{perfil['longitude'].unique().item()}.jpg", bbox_inches="tight")
         plt.close("all")
         print(f"Imagen creada_{str(perfil['latitude'].unique().item())}_{str(perfil['longitude'].unique().item())}")
     

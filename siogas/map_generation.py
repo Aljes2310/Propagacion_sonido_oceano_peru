@@ -48,7 +48,7 @@ for i in range(0,len(coordenadas),1):
 
     # transmission loss
     try :
-        file=f"tloss_{coordenadas['latitude'][i]}_{coordenadas['longitude'][i]}.webp"
+        file=f"tloss_{coordenadas['latitude'][i]}_{coordenadas['longitude'][i]}.jpg"
         # 1. Codificar la imagen a Base64
         #with open(f"img/join/{file}", "rb") as img_file:
          #   img_base64 = base64.b64encode(img_file.read()).decode('utf-8')
