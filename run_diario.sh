@@ -12,8 +12,7 @@ export PATH="$PATH:/home/user03/siogas/Acoustics-Toolbox-main/Bellhop"
 /home/user03/siogas/myvenv/bin/python /home/user03/siogas/download_data.py
 /home/user03/siogas/myvenv/bin/python /home/user03/siogas/generacion_imagenes.py
 /home/user03/siogas/myvenv/bin/python /home/user03/siogas/siogas/map_generation.py
-
-
+/home/user03/siogas/myvenv/bin/python /home/user03/siogas/envio_ftp.py
 
 # callao siogas
 /home/user03/siogas/myvenv/bin/python /home/user03/siogas/callao_generation.py
