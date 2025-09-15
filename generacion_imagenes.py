@@ -92,7 +92,7 @@ for i in range(0,len(puntos_grilla),1):
             bottom_soundspeed=1450,
             bottom_density=1200,
             bottom_absorption=1.0,
-            tx_depth=10 # profundidad transmisor
+            tx_depth=5 # profundidad transmisor
             )
         
         
@@ -111,7 +111,7 @@ for i in range(0,len(puntos_grilla),1):
         depth = tloss.index.values
         range_ = tloss.columns.values
 
-        extent=[0, 5, depth.min(), depth.max()]
+        extent=[0, 5000, depth.min(), depth.max()]
 
         # Crear el gráfico
         f, (a1, a2) = plt.subplots(1, 2, gridspec_kw={'width_ratios': [1, 3]}, dpi=150, figsize=(15,6))
