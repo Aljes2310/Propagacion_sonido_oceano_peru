@@ -92,11 +92,12 @@ for i in range(0,len(puntos_grilla),1):
             bottom_soundspeed=1450,
             bottom_density=1200,
             bottom_absorption=1.0,
-            tx_depth=5 # profundidad transmisor
+            tx_depth=10 # profundidad transmisor
             )
         
         
         env['frequency']=2100
+        yardas=0.9144 * 9144 #metros
         env['rx_range'] = np.linspace(0, 5000, 100) # x (metros)
         #df_bati_pto["elev"].max() , perfil["depth"].max()
         env['rx_depth'] = np.linspace(0, abs(perfil["depth"].max()), 100) # y (metros)
@@ -124,7 +125,7 @@ for i in range(0,len(puntos_grilla),1):
         cbar = f.colorbar(img, ax=a2, label='Pérdida del sonido (dB)')
         cbar.set_ticks(np.arange(0, 115, 10))
         # Etiquetas y título
-        a2.set_xlabel('Rango (km)')
+        a2.set_xlabel('Rango (yardas)')
         a2.set_ylabel('Profundidad (m)')
         a2.set_title(f'Latitud: {perfil["latitude"].unique().item()}   Longitud: {perfil["longitude"].unique().item()}    f=2100 Hz')
 
