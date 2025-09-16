@@ -111,7 +111,13 @@ for i in range(0,len(puntos_grilla),1):
         depth = tloss.index.values
         range_ = tloss.columns.values
 
-        extent=[0, 5000, depth.min(), depth.max()]
+        # Profundidad maxima segun requerimiento
+        if depth.max() >=500:
+            graf_prof_max=500 * 3.28084 # a pies
+        else:
+            graf_prof_max=depth.max() * 3.28084 # a pies 
+
+        extent=[0, 5000, depth.min(), graf_prof_max]
 
         # Crear el gráfico
         f, (a1, a2) = plt.subplots(1, 2, gridspec_kw={'width_ratios': [1, 3]}, dpi=150, figsize=(15,6))
@@ -137,11 +143,11 @@ for i in range(0,len(puntos_grilla),1):
         #a1.plot(perfil_10["Sound Velocity(m/s)"], perfil_10["depth"], "-b", label=perfil_10.time.unique())
         #a1.ylim([0,300])
         a1.invert_yaxis()
-        a1.set_ylabel("Profundidad(m)")
+        a1.set_ylabel("Pies (ft)")
         a1.set_xlabel("Velocidad del Sonido (m/s)")
         a1.grid(which="both", alpha=0.6)
         a1.legend(loc="lower left")
-        a1.set_ylim([depth.max(),0])
+        a1.set_ylim([graf_prof_max,0])
 
 
         # Guardar la figura (descomentar cuando sea necesario)
