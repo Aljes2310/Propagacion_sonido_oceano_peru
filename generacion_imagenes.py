@@ -132,13 +132,16 @@ for i in range(0,len(puntos_grilla),1):
         cbar.set_ticks(np.arange(0, 115, 10))
         # Etiquetas y título
         a2.set_xlabel('Rango (yardas)')
-        a2.set_ylabel('Profundidad (m)')
+        a2.set_ylabel('Profundidad (ft)')
         a2.set_title(f'Latitud: {perfil["latitude"].unique().item()}   Longitud: {perfil["longitude"].unique().item()}    f=2100 Hz')
 
         ### Perfil
         #perfil_10=ds_sound_profile[(ds_sound_profile["latitude"]==puntos_grilla["latitude"][i]) & (ds_sound_profile["longitude"]==puntos_grilla["longitude"][i])
         #                        & (ds_sound_profile["time"]==ds_sound_profile["time"].max())].reset_index(drop=True)
 
+        # a pies
+        perfil["depth"] = perfil["depth"] * 3.28084 # a pies
+        
         a1.plot(perfil["Sound Velocity(m/s)"], perfil["depth"], "-r", label=perfil.time.unique())
         #a1.plot(perfil_10["Sound Velocity(m/s)"], perfil_10["depth"], "-b", label=perfil_10.time.unique())
         #a1.ylim([0,300])
